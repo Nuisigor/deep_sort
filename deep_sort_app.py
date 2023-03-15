@@ -1,5 +1,5 @@
 # vim: expandtab:ts=4:sw=4
-from __future__ import division, print_function, absolute_import
+from __future__ import absolute_import, division, print_function
 
 import argparse
 import os
@@ -7,8 +7,7 @@ import os
 import cv2
 import numpy as np
 
-from application_util import preprocessing
-from application_util import visualization
+from application_util import preprocessing, visualization
 from deep_sort import nn_matching
 from deep_sort.detection import Detection
 from deep_sort.tracker import Tracker
@@ -122,6 +121,7 @@ def create_detections(detection_mat, frame_idx, min_height=0):
         bbox, confidence, feature = row[2:6], row[6], row[10:]
         if bbox[3] < min_height:
             continue
+        print(bbox)
         detection_list.append(Detection(bbox, confidence, feature))
     return detection_list
 
